@@ -1,10 +1,12 @@
-﻿using LMcNally.Xamarin.MvpDemo.Presentation.Views;
+﻿using LMcNally.Xamarin.MvpDemo.Presentation.Services;
+using LMcNally.Xamarin.MvpDemo.Presentation.Views;
 
 namespace LMcNally.Xamarin.MvpDemo.Presentation.Presenters
 {
-	public class LoginPresenter
+	public class LoginPresenter : BasePresenter
 	{
-		public LoginPresenter()
+		public LoginPresenter(INavigationService navigationService) :
+			base(navigationService)
 		{
 		}
 
@@ -38,18 +40,21 @@ namespace LMcNally.Xamarin.MvpDemo.Presentation.Presenters
 
 		public void Login()
 		{
-			if (!m_view.IsPerformingAction && HasValidInput())
+			if (!m_view.IsNavigating &&
+				!m_view.IsPerformingAction &&
+				HasValidInput())
 			{
 				m_view.OnActionStarted();
 
 				// TODO: Add logic for registration.
-				bool loggedIn = false;
+				bool loggedIn = true;
 
 				m_view.OnActionFinished();
 
 				if (loggedIn)
 				{
-					// TODO: Navigate to main screen.
+					m_view.OnNavigationStarted();
+					NavigationService.PushPresenter(new MainPresenter(NavigationService));
 				}
 				else
 				{

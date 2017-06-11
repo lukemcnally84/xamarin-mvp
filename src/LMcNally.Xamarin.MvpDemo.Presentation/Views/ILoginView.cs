@@ -1,12 +1,8 @@
 ﻿namespace LMcNally.Xamarin.MvpDemo.Presentation.Views
 {
-	public interface ILoginView
+	public interface ILoginView : IActionView, INavigationView
 	{
-		bool IsPerformingAction { get; }
-
 		void OnInputValidated(bool isValid);
-		void OnActionStarted();
-		void OnActionFinished();
 		void OnLoginFailed(string errorMessage);
 	}
 }

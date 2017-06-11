@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Text;
@@ -29,16 +30,28 @@ namespace LMcNally.Xamarin.MvpDemo.Droid.Views
 			m_btnLogin = FindViewById<Button>(Resource.Id.btnLogin);
 			m_btnLogin.Touch += m_btnLogin_Touch;
 
-			m_presenter = new LoginPresenter();
+			var app = MvpDemoApplication.GetApplication(this);
+			m_presenter = (LoginPresenter)app.Presenter;
 			m_presenter.SetView(this);
+
+			app.CurrentActivity = this;
+		}
+
+		protected override void OnStop()
+		{
+			base.OnStop();
+
+			IsNavigating = false;
 		}
 
 		#endregion
 
 		#region ILoginView Implementation
 
-		public bool IsPerformingAction { get; private set; }
+		#region IActionView Implementation
 
+		public bool IsPerformingAction { get; private set; }
+		
 		public void OnActionStarted()
 		{
 			IsPerformingAction = true;
@@ -48,6 +61,19 @@ namespace LMcNally.Xamarin.MvpDemo.Droid.Views
 		{
 			IsPerformingAction = false;
 		}
+
+		#endregion
+
+		#region INavigationView Implementation
+		
+		public bool IsNavigating { get; private set; }
+
+		public void OnNavigationStarted()
+		{
+			IsNavigating = true;
+		}
+
+		#endregion
 
 		public void OnInputValidated(bool isValid)
 		{
