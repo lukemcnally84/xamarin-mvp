@@ -2,6 +2,8 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/src/LMcNally.Xamarin.MvpDemo.Presentation/obj
 /.vs
 *.suo
+**/bin/Debug
+**/obj
+*.user
