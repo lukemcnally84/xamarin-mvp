@@ -16,8 +16,13 @@
       android:id="@+id/edtPassword"
       android:hint="@string/hint_Password" />
   <Button
-      android:text="Login"
+      android:text="@string/text_Login"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:id="@+id/btnLogin" />
+  <Button
+      android:text="@string/text_Register"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/btnRegister" />
 </LinearLayout>

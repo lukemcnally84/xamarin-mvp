@@ -1,42 +1,52 @@
-﻿using Android.App;
-using Android.Content.PM;
+using Android.App;
 using Android.OS;
-using Android.Text;
 using Android.Views;
 using Android.Widget;
-using LMcNally.Xamarin.MvpDemo.Presentation.Presenters;
 using LMcNally.Xamarin.MvpDemo.Presentation.Views;
+using LMcNally.Xamarin.MvpDemo.Presentation.Presenters;
+using Android.Text;
 
 namespace LMcNally.Xamarin.MvpDemo.Droid.Views
 {
-	[Activity(Label = "Login", MainLauncher = true, Icon = "@drawable/icon", ScreenOrientation = ScreenOrientation.Portrait)]
-	public class LoginActivity : Activity, ILoginView
+	[Activity(Label = "Sign-up")]
+	public class SignUpActivity : Activity, ISignUpView
 	{
 		#region Lifetime Overrides
 
-		protected override void OnCreate(Bundle bundle)
+		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			base.OnCreate(bundle);
+			base.OnCreate(savedInstanceState);
 
-			SetContentView(Resource.Layout.LoginView);
+			SetContentView(Resource.Layout.SignUpView);
 
 			m_edtEmail = FindViewById<EditText>(Resource.Id.edtEmail);
 			m_edtEmail.TextChanged += m_edtEmail_TextChanged;
 
+			m_edtName = FindViewById<EditText>(Resource.Id.edtEmail);
+			m_edtName.TextChanged += m_edtName_TextChanged;
+
+			m_edtAddress = FindViewById<EditText>(Resource.Id.edtEmail);
+			m_edtAddress.TextChanged += m_edtAddress_TextChanged;
+
 			m_edtPassword = FindViewById<EditText>(Resource.Id.edtPassword);
 			m_edtPassword.TextChanged += m_edtPassword_TextChanged;
 
-			m_btnLogin = FindViewById<Button>(Resource.Id.btnLogin);
-			m_btnLogin.Touch += m_btnLogin_Touch;
+			m_edtConfirmPassword = FindViewById<EditText>(Resource.Id.edtConfirmPassword);
+			m_edtConfirmPassword.TextChanged += m_edtConfirmPassword_TextChanged;
 
-			m_btnRegister = FindViewById<Button>(Resource.Id.btnRegister);
-			m_btnRegister.Touch += m_btnRegister_Touch;
+			m_btnSignUp = FindViewById<Button>(Resource.Id.btnSignUp);
+			m_btnSignUp.Touch += m_btnSignUp_Touch;
 
 			var app = MvpDemoApplication.GetApplication(this);
-			m_presenter = (LoginPresenter)app.Presenter;
+			m_presenter = app.Presenter as SignUpPresenter;
 			m_presenter.SetView(this);
 
 			app.CurrentActivity = this;
+		}
+
+		public override void OnBackPressed()
+		{
+			m_presenter.GoToLogin();
 		}
 
 		protected override void OnStop()
@@ -44,20 +54,18 @@ namespace LMcNally.Xamarin.MvpDemo.Droid.Views
 			base.OnStop();
 
 			// We remove ourself from the navigation stack, so that the back
-			// button doesn't bring the user back to the login screen. Where
-			// navigation to the login screen is required, an explicit call
-			// to push a new LoginPresenter should be made.
+			// button doesn't bring the user back to the sign-up screen.
 			Finish();
 		}
 
 		#endregion
 
-		#region ILoginView Implementation
+		#region ISignUpView Implementation
 
 		#region IActionView Implementation
 
 		public bool IsPerformingAction { get; private set; }
-		
+
 		public void OnActionStarted()
 		{
 			IsPerformingAction = true;
@@ -71,7 +79,7 @@ namespace LMcNally.Xamarin.MvpDemo.Droid.Views
 		#endregion
 
 		#region INavigationView Implementation
-		
+
 		public bool IsNavigating { get; private set; }
 
 		public void OnNavigationStarted()
@@ -83,10 +91,10 @@ namespace LMcNally.Xamarin.MvpDemo.Droid.Views
 
 		public void OnInputValidated(bool isValid)
 		{
-			m_btnLogin.Enabled = isValid;
+			m_btnSignUp.Enabled = isValid;
 		}
 
-		public void OnLoginFailed(string errorMessage)
+		public void OnSignUpFailed(string errorMessage)
 		{
 			if (!m_dialogVisible)
 			{
@@ -109,33 +117,46 @@ namespace LMcNally.Xamarin.MvpDemo.Droid.Views
 			m_presenter.UpdateEmail(e.Text.ToString());
 		}
 
+		private void m_edtName_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			m_presenter.UpdateName(e.Text.ToString());
+		}
+
+		private void m_edtAddress_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			m_presenter.UpdateAddress(e.Text.ToString());
+		}
+
 		private void m_edtPassword_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			m_presenter.UpdatePassword(e.Text.ToString());
 		}
 
-		private void m_btnLogin_Touch(object sender, View.TouchEventArgs e)
+		private void m_edtConfirmPassword_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			m_presenter.Login();
+			m_presenter.UpdateConfirmPassword(e.Text.ToString());
 		}
 
-		private void m_btnRegister_Touch(object sender, View.TouchEventArgs e)
+		private void m_btnSignUp_Touch(object sender, View.TouchEventArgs e)
 		{
-			m_presenter.Register();
+			m_presenter.SignUp();
 		}
 
 		#endregion
 
 		#region Member Variables
 
-		private LoginPresenter m_presenter;
+		private SignUpPresenter m_presenter;
 		private EditText m_edtEmail;
+		private EditText m_edtName;
+		private EditText m_edtAddress;
 		private EditText m_edtPassword;
-		private Button m_btnLogin;
-		private Button m_btnRegister;
+		private EditText m_edtConfirmPassword;
+		private Button m_btnSignUp;
 
 		private bool m_dialogVisible;
 
 		#endregion
+
 	}
 }

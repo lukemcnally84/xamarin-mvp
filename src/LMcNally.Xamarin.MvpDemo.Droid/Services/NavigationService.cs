@@ -1,14 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using LMcNally.Xamarin.MvpDemo.Presentation.Presenters;
 using LMcNally.Xamarin.MvpDemo.Presentation.Services;
 using LMcNally.Xamarin.MvpDemo.Droid.Views;
@@ -34,6 +24,10 @@ namespace LMcNally.Xamarin.MvpDemo.Droid.Services
 				if (presenter is LoginPresenter)
 				{
 					intent = new Intent(m_application.CurrentActivity, typeof(LoginActivity));
+				}
+				else if (presenter is SignUpPresenter)
+				{
+					intent = new Intent(m_application.CurrentActivity, typeof(SignUpActivity));
 				}
 				else if (presenter is MainPresenter)
 				{

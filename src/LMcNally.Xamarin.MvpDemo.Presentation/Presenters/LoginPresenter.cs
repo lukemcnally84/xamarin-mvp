@@ -1,4 +1,5 @@
-﻿using LMcNally.Xamarin.MvpDemo.Presentation.Services;
+﻿using System;
+using LMcNally.Xamarin.MvpDemo.Presentation.Services;
 using LMcNally.Xamarin.MvpDemo.Presentation.Views;
 
 namespace LMcNally.Xamarin.MvpDemo.Presentation.Presenters
@@ -46,7 +47,7 @@ namespace LMcNally.Xamarin.MvpDemo.Presentation.Presenters
 			{
 				m_view.OnActionStarted();
 
-				// TODO: Add logic for registration.
+				// TODO: Add logic for login.
 				bool loggedIn = true;
 
 				m_view.OnActionFinished();
@@ -58,8 +59,17 @@ namespace LMcNally.Xamarin.MvpDemo.Presentation.Presenters
 				}
 				else
 				{
-					m_view.OnLoginFailed("Login hasn't been implemented yet.");
+					m_view.OnLoginFailed("There was a problem logging you in, please try again later.");
 				}
+			}
+		}
+
+		public void Register()
+		{
+			if (!m_view.IsNavigating)
+			{
+				m_view.OnNavigationStarted();
+				NavigationService.PushPresenter(new SignUpPresenter(NavigationService));
 			}
 		}
 

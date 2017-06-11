@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-  <string name="ApplicationName">LMcNally.Xamarin.MvpDemo.Droid</string>
+  <string name="ApplicationName">Xamarin MVP Demo for Android</string>
 
   <!-- Hints -->
   <string name="hint_EmailAddress">Email Address</string>
+  <string name="hint_Name">Full Name</string>
+  <string name="hint_Address">Address</string>
   <string name="hint_Password">Password</string>
+  <string name="hint_ConfirmPassword">Confirm Password</string>
 
+  <!-- Captions -->
+  <string name="text_Login">Login</string>
+  <string name="text_Register">Register</string>
+  <string name="text_SignUp">Sign-Up</string>
+  
 </resources>

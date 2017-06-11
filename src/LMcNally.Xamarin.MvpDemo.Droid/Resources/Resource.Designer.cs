@@ -63,8 +63,23 @@ namespace LMcNally.Xamarin.MvpDemo.Droid
 			// aapt resource value: 0x7f050002
 			public const int btnLogin = 2131034114;
 			
+			// aapt resource value: 0x7f050003
+			public const int btnRegister = 2131034115;
+			
+			// aapt resource value: 0x7f050007
+			public const int btnSignUp = 2131034119;
+			
+			// aapt resource value: 0x7f050005
+			public const int edtAddress = 2131034117;
+			
+			// aapt resource value: 0x7f050006
+			public const int edtConfirmPassword = 2131034118;
+			
 			// aapt resource value: 0x7f050000
 			public const int edtEmail = 2131034112;
+			
+			// aapt resource value: 0x7f050004
+			public const int edtName = 2131034116;
 			
 			// aapt resource value: 0x7f050001
 			public const int edtPassword = 2131034113;
@@ -88,6 +103,9 @@ namespace LMcNally.Xamarin.MvpDemo.Droid
 			// aapt resource value: 0x7f030001
 			public const int MainView = 2130903041;
 			
+			// aapt resource value: 0x7f030002
+			public const int SignUpView = 2130903042;
+			
 			static Layout()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -104,11 +122,29 @@ namespace LMcNally.Xamarin.MvpDemo.Droid
 			// aapt resource value: 0x7f040000
 			public const int ApplicationName = 2130968576;
 			
+			// aapt resource value: 0x7f040003
+			public const int hint_Address = 2130968579;
+			
+			// aapt resource value: 0x7f040005
+			public const int hint_ConfirmPassword = 2130968581;
+			
 			// aapt resource value: 0x7f040001
 			public const int hint_EmailAddress = 2130968577;
 			
 			// aapt resource value: 0x7f040002
-			public const int hint_Password = 2130968578;
+			public const int hint_Name = 2130968578;
+			
+			// aapt resource value: 0x7f040004
+			public const int hint_Password = 2130968580;
+			
+			// aapt resource value: 0x7f040006
+			public const int text_Login = 2130968582;
+			
+			// aapt resource value: 0x7f040007
+			public const int text_Register = 2130968583;
+			
+			// aapt resource value: 0x7f040008
+			public const int text_SignUp = 2130968584;
 			
 			static String()
 			{
