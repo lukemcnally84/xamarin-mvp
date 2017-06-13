@@ -55,7 +55,7 @@ namespace LMcNally.Xamarin.MvpDemo.Droid.Views
 
 			// We remove ourself from the navigation stack, so that the back
 			// button doesn't bring the user back to the sign-up screen.
-			Finish();
+			//Finish();
 		}
 
 		#endregion

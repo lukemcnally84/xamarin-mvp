@@ -1,5 +1,4 @@
-﻿using System;
-using LMcNally.Xamarin.MvpDemo.Presentation.Services;
+﻿using LMcNally.Xamarin.MvpDemo.Presentation.Services;
 using LMcNally.Xamarin.MvpDemo.Presentation.Views;
 
 namespace LMcNally.Xamarin.MvpDemo.Presentation.Presenters
@@ -55,7 +54,7 @@ namespace LMcNally.Xamarin.MvpDemo.Presentation.Presenters
 				if (loggedIn)
 				{
 					m_view.OnNavigationStarted();
-					NavigationService.PushPresenter(new MainPresenter(NavigationService));
+					NavigationService.StartNewNavigationStack(new MainPresenter(NavigationService));
 				}
 				else
 				{
@@ -69,7 +68,7 @@ namespace LMcNally.Xamarin.MvpDemo.Presentation.Presenters
 			if (!m_view.IsNavigating)
 			{
 				m_view.OnNavigationStarted();
-				NavigationService.PushPresenter(new SignUpPresenter(NavigationService));
+				NavigationService.StartNewNavigationStack(new SignUpPresenter(NavigationService));
 			}
 		}
 

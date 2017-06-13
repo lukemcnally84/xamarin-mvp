@@ -4,6 +4,8 @@ namespace LMcNally.Xamarin.MvpDemo.Presentation.Services
 {
 	public interface INavigationService
 	{
-		void PushPresenter(BasePresenter presenter);
+		void NavigateTo(BasePresenter presenter);
+
+		void StartNewNavigationStack(BasePresenter signUpPresenter);
 	}
 }

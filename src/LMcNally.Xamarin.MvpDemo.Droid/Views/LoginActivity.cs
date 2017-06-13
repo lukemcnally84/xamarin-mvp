@@ -47,7 +47,7 @@ namespace LMcNally.Xamarin.MvpDemo.Droid.Views
 			// button doesn't bring the user back to the login screen. Where
 			// navigation to the login screen is required, an explicit call
 			// to push a new LoginPresenter should be made.
-			Finish();
+			//Finish();
 		}
 
 		#endregion
